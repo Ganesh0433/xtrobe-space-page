@@ -7,7 +7,7 @@ import Astronomy from "./astronomy";
 import SignUp from "./signup";
 import Main from "./home";
 import  NotionEditor from "./notes";
-import ChatSpaceAI from "./chatbot";
+
 
 
 export default function Home() {

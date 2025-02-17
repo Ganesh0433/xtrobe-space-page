@@ -19,7 +19,7 @@ const Sidebar = () => {
         {/* Menu Toggle */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="p-4 hover:bg-gray-800 transition w-full flex items-center justify-start"
+          className="cursor-pointer p-4 hover:bg-gray-800 transition w-full flex items-center justify-start"
         >
           <Menu size={26} />
           {isOpen && <span className="ml-3 text-lg">Menu</span>}
@@ -33,14 +33,14 @@ const Sidebar = () => {
           transition={{ duration: 0.2 }}
         >
           <NavItem href="/latestnews" label="Space News" Icon={Globe} isOpen={isOpen} />
-          <NavItem href="/astroid" label="Space" Icon={Rocket} isOpen={isOpen} />
+          <NavItem href="/space" label="Space" Icon={Rocket} isOpen={isOpen} />
           <NavItem href="/community-hub" label="Community Hub" Icon={Users} isOpen={isOpen} />
 
-          {/* Events Dropdown */}
+          {/* Events Dropdown (toggle, not a redirect) */}
           <div className="w-full">
             <button
               onClick={() => setIsEventsOpen(!isEventsOpen)}
-              className="flex items-center justify-between p-3 rounded-lg w-full hover:bg-gray-800 transition"
+              className="cursor-pointer flex items-center justify-between p-4 rounded-lg w-full hover:bg-gray-800 transition"
             >
               <div className="flex items-center">
                 <Calendar size={24} />
@@ -60,7 +60,7 @@ const Sidebar = () => {
                   initial={{ opacity: 0, height: 0 }}
                   animate={{ opacity: 1, height: "auto" }}
                   exit={{ opacity: 0, height: 0 }}
-                  className="ml-4 flex flex-col bg-gray-800 rounded-lg overflow-hidden"
+                  className="ml-4 flex flex-col bg-gray-800 rounded-lg overflow-hidden mt-2"
                 >
                   <DropdownItem href="/rocket" label="Rocket Events" />
                   <DropdownItem href="/astronomy" label="Astronomy Events" />
@@ -74,26 +74,30 @@ const Sidebar = () => {
   );
 };
 
-// Navigation Item
+// Navigation Item: The entire container is wrapped with Link
 const NavItem = ({ href, label, Icon, isOpen }) => (
-  <motion.div
-    whileHover={{ scale: 1.05 }}
-    className="flex items-center p-3 rounded-lg hover:bg-gray-800 transition w-full"
-  >
-    <Icon size={24} />
-    {isOpen && (
-      <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="ml-3">
-        <Link href={href}>{label}</Link>
-      </motion.span>
-    )}
-  </motion.div>
+  <Link href={href} className="w-full">
+    <motion.div
+      whileHover={{ scale: 1.05 }}
+      className="cursor-pointer flex items-center p-3 rounded-lg hover:bg-gray-800 transition w-full"
+    >
+      <Icon size={24} />
+      {isOpen && (
+        <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="ml-3">
+          {label}
+        </motion.span>
+      )}
+    </motion.div>
+  </Link>
 );
 
-// Dropdown Item
+// Dropdown Item: Wrap the whole item in Link so clicking anywhere redirects
 const DropdownItem = ({ href, label }) => (
-  <motion.div whileHover={{ scale: 1.05 }} className="p-3 hover:bg-blue-500 transition">
-    <Link href={href}>{label}</Link>
-  </motion.div>
+  <Link href={href} className="w-full">
+    <motion.div whileHover={{ scale: 1.05 }} className="cursor-pointer p-3 hover:bg-blue-500 transition">
+      {label}
+    </motion.div>
+  </Link>
 );
 
 export default Sidebar;
