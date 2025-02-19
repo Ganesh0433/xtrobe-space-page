@@ -12,22 +12,24 @@ const Sidebar = () => {
     <div className="fixed top-0 left-0 z-50 flex">
       {/* Sidebar Container */}
       <motion.div
-        animate={{ width: isOpen ? 250 : 60 }}
+        animate={{
+          width: isOpen ? 250 : 60,
+          height: isOpen ? '100vh' : '60px', // Set height dynamically
+        }}
         transition={{ duration: 0.2, ease: "easeInOut" }}
-        className="bg-gray-900 text-white h-screen shadow-lg flex flex-col items-center"
+        className="bg-gray-900 text-white shadow-lg flex flex-col items-center relative"
       >
-        {/* Menu Toggle */}
+        {/* Menu Toggle (absolute positioning when closed) */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="cursor-pointer p-4 hover:bg-gray-800 transition w-full flex items-center justify-start"
+          className="cursor-pointer p-4 hover:bg-gray-800 transition w-full flex items-center justify-start absolute top-0 left-0"
         >
           <Menu size={26} />
-          {isOpen && <span className="ml-3 text-lg">Menu</span>}
         </button>
 
         {/* Navigation */}
         <motion.div
-          className="mt-4 flex flex-col w-full"
+          className="mt-16 flex flex-col w-full"
           initial={{ opacity: 0 }}
           animate={{ opacity: isOpen ? 1 : 0 }}
           transition={{ duration: 0.2 }}
@@ -36,7 +38,7 @@ const Sidebar = () => {
           <NavItem href="/space" label="Space" Icon={Rocket} isOpen={isOpen} />
           <NavItem href="/community-hub" label="Community Hub" Icon={Users} isOpen={isOpen} />
 
-          {/* Events Dropdown (toggle, not a redirect) */}
+          {/* Events Dropdown */}
           <div className="w-full">
             <button
               onClick={() => setIsEventsOpen(!isEventsOpen)}

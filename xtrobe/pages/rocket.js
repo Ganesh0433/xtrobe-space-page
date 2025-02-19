@@ -7,8 +7,6 @@ export default function LaunchEvents() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const fallbackImage = "https://via.placeholder.com/150";
-
   useEffect(() => {
     const fetchEvents = async () => {
       try {
@@ -28,8 +26,9 @@ export default function LaunchEvents() {
     fetchEvents();
   }, []);
 
-
-  const isValidImageUrl = (url) => url && (url.startsWith("http") || url.startsWith("https"));
+  // Only return true if the URL exists and starts with http:// or https://
+  const isValidImageUrl = (url) =>
+    url && (url.startsWith("http://") || url.startsWith("https://"));
 
   // Function to handle the Notify button click
   const handleNotify = async (event) => {
@@ -39,7 +38,6 @@ export default function LaunchEvents() {
         event_title: event.title,
         launch_time: event.launch_time,
       });
-
       alert(response.data.message);
     } catch (error) {
       console.error("Error notifying:", error);
@@ -51,12 +49,17 @@ export default function LaunchEvents() {
     <>
       <Navbar />
       <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black text-white py-10 px-4">
-        <h1 className="text-3xl md:text-4xl font-bold text-center mb-8">Upcoming Launch Events</h1>
+        <h1 className="text-3xl md:text-4xl font-bold text-center mb-8">
+          Upcoming Launch Events
+        </h1>
 
         {loading && (
           <div className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {[...Array(6)].map((_, index) => (
-              <div key={index} className="bg-gray-800 p-6 rounded-lg shadow-lg animate-pulse">
+              <div
+                key={index}
+                className="bg-gray-800 p-6 rounded-lg shadow-lg animate-pulse"
+              >
                 <div className="w-full mb-4 flex justify-center">
                   <div className="bg-gray-700 w-32 h-32 rounded-lg"></div>
                 </div>
@@ -69,29 +72,62 @@ export default function LaunchEvents() {
           </div>
         )}
 
-        {error && <div className="text-center text-red-500 mt-4"><p>Oops! {error}</p></div>}
+        {error && (
+          <div className="text-center text-red-500 mt-4">
+            <p>Oops! {error}</p>
+          </div>
+        )}
 
         <div className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {!loading && !error && events.length === 0 && <div className="text-center text-gray-400 mt-4">No upcoming events.</div>}
+          {!loading && !error && events.length === 0 && (
+            <div className="text-center text-gray-400 mt-4">
+              No upcoming events.
+            </div>
+          )}
 
           {events.map((event, index) => (
-            <div key={index} className="bg-gray-800 p-6 rounded-lg shadow-lg transition transform hover:scale-105 border border-gray-600">
+            <div
+              key={index}
+              className="relative bg-gray-800 p-6 rounded-lg shadow-lg transition transform hover:scale-105 border border-gray-600"
+            >
+              {/* Notify icon positioned at the top-right corner */}
+              <button
+                className="absolute top-2 right-2  text-white p-2 rounded-full hover:bg-blue-400 transition"
+                onClick={() => handleNotify(event)}
+                title="Notify Me"
+              >
+                {/* Notification Bell Icon */}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M15 17h5l-1.405-1.405C18.79 14.79 19 13.9 19 13V9a7 7 0 10-14 0v4c0 .9.21 1.79.405 2.595L5 17h5m5 0v1a3 3 0 11-6 0v-1m6 0H9"
+                  />
+                </svg>
+              </button>
               <div className="w-full mb-4 flex justify-center">
-                <img src={isValidImageUrl(event.image_url) ? event.image_url : fallbackImage} alt={event.title} className="w-32 h-32 object-cover rounded-lg border border-gray-600 shadow-md" />
+                {isValidImageUrl(event.image_url) ? (
+                  <img
+                    src={event.image_url}
+                    alt={event.title}
+                    className="w-32 h-32 object-cover rounded-lg border border-gray-600 shadow-md"
+                  />
+                ) : (
+                  <div className="w-32 h-32 bg-gray-700 rounded-lg border border-gray-600 shadow-md"></div>
+                )}
               </div>
               <div className="text-center">
                 <h2 className="text-xl font-semibold">{event.title}</h2>
                 <p className="text-gray-400 mt-2">{event.launch_info}</p>
                 <p className="text-gray-300 mt-2">{event.location}</p>
                 <p className="text-gray-300 mt-2">{event.launch_time}</p>
-                <div className="mt-4">
-                  <button 
-                    className="bg-blue-500 text-white px-4 py-2 rounded-full text-lg hover:bg-blue-400 transition" 
-                    onClick={() => handleNotify(event)}
-                  >
-                    Notify Me
-                  </button>
-                </div>
               </div>
             </div>
           ))}
