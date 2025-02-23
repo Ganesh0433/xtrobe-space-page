@@ -297,6 +297,45 @@ def notify():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
+@app.route('/iss', methods=['GET'])
+def get_iss_data():
+    try:
+        # Fetch ISS position~
+        iss_url = "http://api.open-notify.org/iss-now.json"
+        iss_response = requests.get(iss_url)
+        iss_data = iss_response.json()
+
+        if iss_response.status_code != 200:
+            return jsonify({"error": "Failed to fetch ISS position"}), 500
+
+        # Fetch crew data
+        crew_url = "http://api.open-notify.org/astros.json"
+        crew_response = requests.get(crew_url)
+        crew_data = crew_response.json()
+
+        if crew_response.status_code != 200:
+            return jsonify({"error": "Failed to fetch ISS crew"}), 500
+
+        # # Log data for debugging
+        # print("ISS Data:", iss_data)
+        # print("Crew Data:", crew_data)
+
+        # Combine the data
+        response_data = {
+            "latitude": iss_data["iss_position"]["latitude"],
+            "longitude": iss_data["iss_position"]["longitude"],
+            "speed_km_h": 7.66 * 3600,  # Approximate speed in km/h
+            "crew": [astro["name"] for astro in crew_data["people"] if astro["craft"] == "ISS"],
+            "crew_count": len([astro["name"] for astro in crew_data["people"] if astro["craft"] == "ISS"]),
+            # "live_stream_url": "https://www.nasa.gov/mission_pages/station/main/index.html"  # Example live stream URL
+        }
+
+        return jsonify(response_data)
+
+    except Exception as e:
+        print("Error:", e)
+        return jsonify({"error": "Internal Server Error"}), 
+
 
 
 if __name__ == '__main__':

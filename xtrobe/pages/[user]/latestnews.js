@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Navbar from "./components/navbar";
+import Navbar from "../components/navbar";
 
 export default function LatestNews() {
   const [articles, setArticles] = useState([]);

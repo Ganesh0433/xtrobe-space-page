@@ -1,5 +1,5 @@
 import Image from "next/image";
-import LatestNews from "./latestnews";
+import LatestNews from "./[user]/latestnews";
 import SocialMediaNews from "./socialmedianews";
 import Astroid from "./astroid";
 import RocketEvents from "./rocket";
