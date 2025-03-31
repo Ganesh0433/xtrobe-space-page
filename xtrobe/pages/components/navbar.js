@@ -16,7 +16,7 @@ const Sidebar = () => {
           width: isOpen ? 250 : 60,
           height: isOpen ? '100vh' : '60px', // Set height dynamically
         }}
-        transition={{ duration: 0.2, ease: "easeInOut" }}
+        transition={{ duration: 0.01, ease: "easeInOut" }}
         className="bg-gray-900 text-white shadow-lg flex flex-col items-center relative"
       >
         {/* Menu Toggle (absolute positioning when closed) */}

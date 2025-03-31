@@ -7,7 +7,7 @@ import Astronomy from "./astronomy";
 import SignUp from "./signup";
 import Main from "./home";
 import  NotionEditor from "./notes";
-import Xtrobot from "./xtrobot";
+// import Xtrobot fro../components/xtrobotbot";
 
 
 
@@ -19,8 +19,8 @@ export default function Home() {
     {/* <RocketEvents/> {/* <RocketEvents/> */}
     {/* <Astronomy/>
     <SocialMediaNews/> */} 
-    {/* <Main/> */}
-    <Xtrobot/>
+    <Main/>
+    {/* <Xtrobot/> */}
     {/* <ChatSpaceAI/> */}
     {/* <NotionEditor/> */}
     </>

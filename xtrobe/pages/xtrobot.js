@@ -3,6 +3,7 @@ import { FiSend, FiPlus } from "react-icons/fi";
 import { FaRobot, FaUser, FaTrash } from "react-icons/fa";
 import ReactMarkdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from 'prism-react-renderer';
+import { useRouter } from "next/router";
 
 const SessionItem = ({ 
     session, 
@@ -88,41 +89,43 @@ const SessionItem = ({
 };
 
 export default function Xtrobot() {
-    // Session management with SSR support
-    const [sessions, setSessions] = useState(() => {
-        if (typeof window !== 'undefined') {
-            try {
-                const saved = localStorage.getItem('xtrobot-sessions');
-                return saved ? JSON.parse(saved) : [
-                    {
-                        id: Date.now().toString(),
-                        name: "New Chat",
-                        messages: [
-                            {
-                                sender: "bot",
-                                text: "Hello! I'm Xtrobot, your AI assistant. How can I help you today?"
-                            }
-                        ]
-                    }
-                ];
-            } catch (e) {
-                console.error("Error loading sessions:", e);
-                return [
-                    {
-                        id: Date.now().toString(),
-                        name: "New Chat",
-                        messages: [
-                            {
-                                sender: "bot",
-                                text: "Hello! I'm Xtrobot, your AI assistant. How can I help you today?"
-                            }
-                        ]
-                    }
-                ];
+    const [isClient, setIsClient] = useState(false);
+    const router = useRouter();
+    
+    // Session management with proper SSR handling
+    const [sessions, setSessions] = useState([]);
+    const [currentSessionId, setCurrentSessionId] = useState('');
+    const [initialized, setInitialized] = useState(false);
+
+    useEffect(() => {
+        setIsClient(true);
+        
+        // Initialize sessions from localStorage only on client side
+        try {
+            const savedSessions = localStorage.getItem('xtrobot-sessions');
+            const savedCurrentSession = localStorage.getItem('xtrobot-current-session');
+            
+            if (savedSessions) {
+                setSessions(JSON.parse(savedSessions));
+                setCurrentSessionId(savedCurrentSession || JSON.parse(savedSessions)[0]?.id || '');
+            } else {
+                const newSession = {
+                    id: Date.now().toString(),
+                    name: "New Chat",
+                    messages: [
+                        {
+                            sender: "bot",
+                            text: "Hello! I'm Xtrobot, your AI assistant. How can I help you today?"
+                        }
+                    ]
+                };
+                setSessions([newSession]);
+                setCurrentSessionId(newSession.id);
             }
-        }
-        return [
-            {
+            setInitialized(true);
+        } catch (e) {
+            console.error("Error initializing sessions:", e);
+            const newSession = {
                 id: Date.now().toString(),
                 name: "New Chat",
                 messages: [
@@ -131,22 +134,12 @@ export default function Xtrobot() {
                         text: "Hello! I'm Xtrobot, your AI assistant. How can I help you today?"
                     }
                 ]
-            }
-        ];
-    });
-
-    const [currentSessionId, setCurrentSessionId] = useState(() => {
-        if (typeof window !== 'undefined') {
-            try {
-                const saved = localStorage.getItem('xtrobot-current-session');
-                return saved || (sessions.length > 0 ? sessions[0].id : '');
-            } catch (e) {
-                console.error("Error loading current session:", e);
-                return sessions.length > 0 ? sessions[0].id : '';
-            }
+            };
+            setSessions([newSession]);
+            setCurrentSessionId(newSession.id);
+            setInitialized(true);
         }
-        return sessions.length > 0 ? sessions[0].id : '';
-    });
+    }, []);
 
     const currentSession = sessions.find(s => s.id === currentSessionId) || sessions[0];
     const [input, setInput] = useState("");
@@ -162,7 +155,7 @@ export default function Xtrobot() {
 
     // Save sessions to localStorage
     useEffect(() => {
-        if (typeof window !== 'undefined') {
+        if (initialized && isClient) {
             try {
                 localStorage.setItem('xtrobot-sessions', JSON.stringify(sessions));
                 localStorage.setItem('xtrobot-current-session', currentSessionId);
@@ -170,7 +163,7 @@ export default function Xtrobot() {
                 console.error("Error saving sessions:", e);
             }
         }
-    }, [sessions, currentSessionId]);
+    }, [sessions, currentSessionId, initialized, isClient]);
 
     // Scroll management
     useEffect(() => {
@@ -181,7 +174,6 @@ export default function Xtrobot() {
             const { scrollTop, scrollHeight, clientHeight } = chatElement;
             const isNearBottom = scrollHeight - scrollTop - clientHeight < 100;
             
-            // User is scrolling up or not at bottom
             if (!isNearBottom || scrollTop < lastScrollHeight.current) {
                 isUserScrolling.current = true;
                 clearTimeout(scrollTimeout.current);
@@ -209,7 +201,7 @@ export default function Xtrobot() {
         const targetScroll = chatElement.scrollHeight;
         const initialScroll = chatElement.scrollTop;
         const distance = targetScroll - initialScroll;
-        const duration = Math.min(300, distance * 0.5); // Dynamic duration based on distance
+        const duration = Math.min(300, distance * 0.5);
 
         let startTime = null;
 
@@ -228,7 +220,7 @@ export default function Xtrobot() {
         scrollAnimationRef.current = requestAnimationFrame(animateScroll);
 
         return () => cancelAnimationFrame(scrollAnimationRef.current);
-    }, [currentSession.messages, loading]);
+    }, [currentSession?.messages, loading]);
 
     const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
 
@@ -265,7 +257,7 @@ export default function Xtrobot() {
     };
 
     const sendMessage = async () => {
-        if (!input.trim()) return;
+        if (!input.trim() || !currentSession) return;
 
         const userMessage = { sender: "user", text: input };
         const updatedMessages = [...currentSession.messages, userMessage];
@@ -304,7 +296,6 @@ export default function Xtrobot() {
         let displayedText = "";
         let i = 0;
         
-        // Add empty bot message immediately
         setSessions(prev => prev.map(session => 
             session.id === currentSessionId 
                 ? { ...session, messages: [...session.messages, { sender: "bot", text: "" }] } 
@@ -316,8 +307,7 @@ export default function Xtrobot() {
                 clearInterval(interval);
                 setLoading(false);
                 
-                // Update session name based on first user message if it's a new chat
-                if (currentSession.messages.length <= 2) { // Initial message + user message
+                if (currentSession?.messages?.length <= 2) {
                     const firstUserMessage = currentSession.messages.find(m => m.sender === "user");
                     if (firstUserMessage) {
                         const newName = firstUserMessage.text.slice(0, 30);
@@ -343,6 +333,16 @@ export default function Xtrobot() {
 
         return () => clearInterval(interval);
     };
+
+    if (!isClient || !initialized) {
+        return (
+            <div className="flex h-screen bg-gray-900 text-gray-100">
+                <div className="flex-1 flex items-center justify-center">
+                    <div className="animate-pulse">Loading...</div>
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div className="flex h-screen bg-gray-900 text-gray-100">
@@ -380,7 +380,7 @@ export default function Xtrobot() {
                         <h1 className="text-lg font-semibold text-gray-200">Xtrobot</h1>
                     </div>
                     <div className="text-sm text-gray-400 truncate max-w-xs">
-                        {currentSession.name}
+                        {currentSession?.name || "New Chat"}
                     </div>
                 </header>
 
@@ -389,7 +389,7 @@ export default function Xtrobot() {
                     ref={chatRef} 
                     className="flex-1 overflow-y-auto p-4 space-y-6 bg-gray-900"
                 >
-                    {currentSession.messages.map((msg, index) => (
+                    {currentSession?.messages?.map((msg, index) => (
                         <div 
                             key={index} 
                             className={`flex ${msg.sender === "user" ? "justify-end" : "justify-start"}`}
