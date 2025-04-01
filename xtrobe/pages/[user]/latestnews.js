@@ -43,11 +43,33 @@ export default function LatestNews() {
       <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800 py-16 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Section Header */}
-          <div className="text-center mb-12">
-            <h1 className="text-4xl font-extrabold tracking-wide text-blue-400">Latest Space News</h1>
-            <p className="text-lg text-gray-300 mt-2">Stay updated with the latest events from space agencies and astronomy discoveries.</p>
-          </div>
+          <div className="text-center mb-12 w-full">
+  {/* Matching divider line */}
+  <div className="flex justify-center mb-6">
+    <div className="h-px w-24 bg-gradient-to-r from-transparent via-blue-400 to-transparent" />
+  </div>
 
+  {/* Consistent heading style */}
+  <h1 className="text-4xl md:text-5xl font-light tracking-wide text-slate-100 mb-3">
+    Latest <span className="font-medium text-white">Space</span> <span className="font-medium text-white">News</span>
+  </h1>
+
+  {/* Matching subheading style */}
+  <p className="text-lg text-slate-300 font-normal max-w-2xl mx-auto">
+    Stay updated with the latest events from space agencies and astronomy discoveries
+  </p>
+
+  {/* Consistent decorative elements */}
+  <div className="flex justify-center mt-6 space-x-2">
+    {[1, 2, 3].map((i) => (
+      <div 
+        key={i}
+        className="h-1 w-1 rounded-full bg-blue-400 opacity-50"
+        style={{ animation: `pulse 2s infinite ${i * 0.3}s` }}
+      />
+    ))}
+  </div>
+</div>
           {/* Loading Skeleton */}
           {loading ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -112,13 +134,33 @@ export default function LatestNews() {
 
         {/* Latest from Space Agencies Section */}
         <div className="bg-gradient-to-b from-gray-900 to-black min-h-screen p-8">
-          <div className="text-center my-12">
-            <h2 className="text-3xl font-bold text-white">Latest from Space Agencies</h2>
-            <p className="text-gray-400 mt-2">
-              Stay updated with the latest news and discoveries from space agencies around the world.
-            </p>
-          </div>
+        <div className="text-center my-12 w-full">
+  {/* Matching cosmic divider */}
+  <div className="flex justify-center mb-6">
+    <div className="h-px w-24 bg-gradient-to-r from-transparent via-indigo-400 to-transparent" />
+  </div>
 
+  {/* Consistent typography treatment */}
+  <h2 className="text-4xl md:text-5xl font-light tracking-wide text-slate-100 mb-3">
+    Latest from <span className="font-medium text-white">Space</span> <span className="font-medium text-white">Agencies</span>
+  </h2>
+
+  {/* Harmonized description */}
+  <p className="text-lg text-slate-300 font-normal max-w-2xl mx-auto">
+    Stay updated with the latest news and discoveries from space agencies worldwide
+  </p>
+
+  {/* Signature animated indicators */}
+  <div className="flex justify-center mt-6 space-x-2">
+    {[1, 2, 3].map((i) => (
+      <div 
+        key={i}
+        className="h-1 w-1 rounded-full bg-indigo-400 opacity-50"
+        style={{ animation: `pulse 2s infinite ${i * 0.3}s` }}
+      />
+    ))}
+  </div>
+</div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4">
             {[
               { name: "NASA", url: "https://twitter.com/NASA?ref_src=twsrc%5Etfw" },

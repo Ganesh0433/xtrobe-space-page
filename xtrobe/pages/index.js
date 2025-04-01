@@ -9,7 +9,7 @@ import Main from "./home";
 import  NotionEditor from "./notes";
 // import Xtrobot fro../components/xtrobotbot";
 
-
+import ISS from "./iss";
 
 export default function Home() {
   return (
@@ -19,7 +19,8 @@ export default function Home() {
     {/* <RocketEvents/> {/* <RocketEvents/> */}
     {/* <Astronomy/>
     <SocialMediaNews/> */} 
-    <Main/>
+    {/* <Main/> */}
+    <ISS/>
     {/* <Xtrobot/> */}
     {/* <ChatSpaceAI/> */}
     {/* <NotionEditor/> */}
