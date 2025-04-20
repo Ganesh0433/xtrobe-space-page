@@ -19,8 +19,8 @@ export default function Home() {
     {/* <RocketEvents/> {/* <RocketEvents/> */}
     {/* <Astronomy/>
     <SocialMediaNews/> */} 
-    {/* <Main/> */}
-    <ISS/>
+    <Main/>
+    {/* <ISS/> */}
     {/* <Xtrobot/> */}
     {/* <ChatSpaceAI/> */}
     {/* <NotionEditor/> */}

@@ -69,6 +69,12 @@ export default function Main() {
                   >
                     Astronomy Events
                   </Link>
+                  <Link
+                    href="/iss"
+                    className="block px-4 py-2 hover:bg-gray-700 transition"
+                  >
+                    Iss
+                  </Link>
                 </div>
               </div>
             )}

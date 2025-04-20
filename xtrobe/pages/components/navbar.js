@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { Menu, Rocket, Users, Globe, Calendar, ChevronDown } from "lucide-react";
+import { Menu, Rocket, Users, Globe, Calendar, ChevronDown, Book } from "lucide-react";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -36,6 +36,7 @@ const Sidebar = () => {
         >
           <NavItem href="/latestnews" label="Space News" Icon={Globe} isOpen={isOpen} />
           <NavItem href="/space" label="Space" Icon={Rocket} isOpen={isOpen} />
+          <NavItem href="/moduledashboard" label="Study modules" Icon={Book} isOpen={isOpen} />
           <NavItem href="/community-hub" label="Community Hub" Icon={Users} isOpen={isOpen} />
 
           {/* Events Dropdown */}
@@ -66,6 +67,7 @@ const Sidebar = () => {
                 >
                   <DropdownItem href="/rocket" label="Rocket Events" />
                   <DropdownItem href="/astronomy" label="Astronomy Events" />
+                  <DropdownItem href="/iss" label="Iss" />
                 </motion.div>
               )}
             </AnimatePresence>
