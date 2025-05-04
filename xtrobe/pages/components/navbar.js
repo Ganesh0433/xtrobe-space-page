@@ -36,7 +36,7 @@ const Sidebar = () => {
         >
           <NavItem href="/latestnews" label="Space News" Icon={Globe} isOpen={isOpen} />
           <NavItem href="/space" label="Space" Icon={Rocket} isOpen={isOpen} />
-          <NavItem href="/moduledashboard" label="Study modules" Icon={Book} isOpen={isOpen} />
+          <NavItem href="/modules" label="Study modules" Icon={Book} isOpen={isOpen} />
           <NavItem href="/community-hub" label="Community Hub" Icon={Users} isOpen={isOpen} />
 
           {/* Events Dropdown */}

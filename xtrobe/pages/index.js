@@ -7,6 +7,7 @@ import Astronomy from "./astronomy";
 import SignUp from "./signup";
 import Main from "./home";
 import  NotionEditor from "./notes";
+import Dashboard from "./Dashboard";
 // import Xtrobot fro../components/xtrobotbot";
 
 import ISS from "./iss";
@@ -20,6 +21,7 @@ export default function Home() {
     {/* <Astronomy/>
     <SocialMediaNews/> */} 
     <Main/>
+    {/* <Dashboard/> */}
     {/* <ISS/> */}
     {/* <Xtrobot/> */}
     {/* <ChatSpaceAI/> */}
@@ -27,3 +29,4 @@ export default function Home() {
     </>
   );
 }
+
