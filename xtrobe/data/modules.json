@@ -1,0 +1,304 @@
+{
+  "modules": [
+    {
+      "id": 0,
+      "title": "Orientation to Astronomy & Tools",
+      "description": "Introduction to astronomy, tools, and career paths.",
+      "content": "This module introduces the fundamentals of astronomy, its interdisciplinary connections (physics, astrobiology, engineering), and tools used in the field. Learn about units like AU and light-years, basic calculus for orbits, and Python for data analysis. Explore ethics, citizen science, and career paths in space science.",
+      "submodules": [
+        {
+          "title": "Introduction to Astronomy",
+          "content": "Learn the definition, scope, and interdisciplinary links of astronomy, connecting physics, astrobiology, and engineering."
+        },
+        {
+          "title": "Math/Physics Primer",
+          "content": "Understand units (AU, light-years, parsecs), basic calculus (derivatives for velocity, integrals for orbits), and observational math (logarithms for magnitudes)."
+        },
+        {
+          "title": "Basic Data Analysis Skills",
+          "content": "Introduction to Python for astronomy and interpreting citizen science datasets."
+        },
+        {
+          "title": "Ethics in Astronomy",
+          "content": "Explore planetary protection, cultural heritage (e.g., Moon treaties), and risks of Mars Sample Return."
+        },
+        {
+          "title": "Modern Tools & Citizen Science",
+          "content": "Use apps like Stellarium and SkySafari, explore AI sky surveys, and learn about radio telescopes like ALMA."
+        },
+        {
+          "title": "Amateur Astronomy",
+          "content": "Learn DIY telescope building and backyard observation techniques."
+        },
+        {
+          "title": "Careers in Space Science",
+          "content": "Discover roles like astronomer, astrobiologist, mission designer, and space lawyer."
+        },
+        {
+          "title": "Guest Lectures",
+          "content": "Watch interviews with professionals, such as a NASA engineer or SETI researcher."
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "title": "Observing the Universe",
+      "description": "Learn to observe the night sky and use telescopes.",
+      "content": "Discover how to observe the night sky using celestial coordinates and telescopes. Learn about space missions like JWST and Hubble, and practice data analysis with tools like Astropy and FITS.",
+      "submodules": [
+        {
+          "title": "1.1 The Night Sky",
+          "content": "Learn about constellations, celestial coordinates (RA/Dec), and the impact of light pollution. Activity: Use a Celestial Events Tracker to plan observations."
+        },
+        {
+          "title": "1.2 Observational Tools",
+          "content": "Explore telescopes (radio, optical, space-based) and spectroscopy basics. Lab: Build a simple spectroscope."
+        },
+        {
+          "title": "1.3 Space Missions Overview",
+          "content": "Study JWST, Hubble, Chandra, and their contributions. Case Study: Fixing Hubble’s mirror flaw."
+        },
+        {
+          "title": "1.4 Data Analysis Techniques",
+          "content": "Learn image processing (stacking, noise reduction) and software tools like Astropy and FITS."
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "The Solar System",
+      "description": "Explore the formation and dynamics of our solar system.",
+      "content": "Study the formation of the solar system, the Sun’s heliosphere, and planetary dynamics. Explore habitability on Mars, Europa, and Enceladus, and learn about missions like OSIRIS-REx and DART.",
+      "submodules": [
+        {
+          "title": "2.1 Formation & Dynamics",
+          "content": "Understand the nebular hypothesis, planetary migration, and the Nice Model."
+        },
+        {
+          "title": "2.2 Sun & Heliosphere",
+          "content": "Learn about solar wind, space weather, and discoveries from the Parker Solar Probe."
+        },
+        {
+          "title": "2.3 Planets & Moons",
+          "content": "Study comparative planetology (Venus vs. Earth vs. Titan) and recent missions like Perseverance, JUICE, and Dragonfly."
+        },
+        {
+          "title": "2.4 Small Bodies",
+          "content": "Explore OSIRIS-REx sample return, DART asteroid deflection, and the Kuiper Belt and Oort Cloud."
+        },
+        {
+          "title": "2.5 Habitability",
+          "content": "Investigate Mars subsurface lakes, Europa’s ocean, and Enceladus plumes."
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Stars & Stellar Evolution",
+      "description": "Understand stellar physics and lifecycles.",
+      "content": "Understand stellar physics, the H-R diagram, and the lifecycle of stars from protostars to supernovae. Explore exotic phenomena like hypernovae and use Gaia data to map star clusters.",
+      "submodules": [
+        {
+          "title": "3.1 Stellar Physics",
+          "content": "Learn about the H-R diagram, nuclear fusion, Chandrasekhar limit, and stellar nucleosynthesis (s-process, r-process)."
+        },
+        {
+          "title": "3.2 Star Lifecycle",
+          "content": "Study protostars, red giants, supernovae, compact objects (neutron stars, magnetars), and stellar populations (I, II, III)."
+        },
+        {
+          "title": "3.3 Exotic Phenomena",
+          "content": "Explore hypernovae, kilonovas, and Tidal Disruption Events."
+        },
+        {
+          "title": "3.4 Star Mapping",
+          "content": "Use Gaia Mission data for 3D Milky Way mapping. Activity: Analyze star clusters with AstroVision."
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Galaxies & Large-Scale Structure",
+      "description": "Study galaxies and the cosmic web.",
+      "content": "Learn about the Milky Way, galaxy types, and the cosmic web. Study active galactic nuclei, quasars, and the future Milky Way-Andromeda merger.",
+      "submodules": [
+        {
+          "title": "4.1 Milky Way & Galactic Archeology",
+          "content": "Study Gaia data, Sagittarius A*, dark matter halo, and the interstellar medium (ISM)."
+        },
+        {
+          "title": "4.2 Galaxy Types & Evolution",
+          "content": "Learn about JWST’s high-redshift galaxies and ultra-diffuse galaxies."
+        },
+        {
+          "title": "4.3 Active Galactic Nuclei",
+          "content": "Explore quasars, blazars, and supermassive black hole mergers."
+        },
+        {
+          "title": "4.4 Cosmic Web",
+          "content": "Study filaments, voids, dark matter’s role (simulations), and galaxy clusters and superclusters."
+        },
+        {
+          "title": "4.5 Galactic Collisions",
+          "content": "Learn about the Milky Way-Andromeda merger and tidal streams."
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Cosmology",
+      "description": "Explore the origins and fate of the universe.",
+      "content": "Explore the Big Bang, cosmic microwave background, and dark matter. Learn about observational cosmology and theories like the Big Rip and multiverse.",
+      "submodules": [
+        {
+          "title": "5.1 Big Bang & Early Universe",
+          "content": "Study the CMB, inflation, and baryon acoustic oscillations. Learn JWST’s role in challenging galaxy formation timelines."
+        },
+        {
+          "title": "5.2 Dark Universe",
+          "content": "Explore dark matter candidates (WIMPs, axions) and dark energy experiments (DESI, Euclid)."
+        },
+        {
+          "title": "5.3 Observational Cosmology",
+          "content": "Learn about Type Ia supernovae, BAO, and gravitational lensing."
+        },
+        {
+          "title": "5.4 Fate of the Universe",
+          "content": "Explore heat death, Big Rip, and cyclic models."
+        },
+        {
+          "title": "5.5 Quantum Cosmology",
+          "content": "Dive into advanced topics like string theory, the holographic principle, and the multiverse."
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "title": "Exoplanets & Astrobiology",
+      "description": "Discover exoplanets and the search for life.",
+      "content": "Discover exoplanet detection methods and biosignatures. Explore the Fermi Paradox, technosignatures, and future missions like ARIEL and LIFE.",
+      "submodules": [
+        {
+          "title": "6.1 Exoplanet Detection",
+          "content": "Learn JWST’s role, direct imaging, AI in data analysis, and methods like radial velocity, transit, and microlensing."
+        },
+        {
+          "title": "6.2 Habitability",
+          "content": "Study biosignatures (O₂, CH₄) and false positives (e.g., Venusian phosphine)."
+        },
+        {
+          "title": "6.3 Life Beyond Earth",
+          "content": "Explore extremophiles, origin of life theories, and the Fermi Paradox."
+        },
+        {
+          "title": "6.4 Technosignatures & Megastructures",
+          "content": "Learn about Dyson spheres, FRBs, and Tabby’s Star."
+        },
+        {
+          "title": "6.5 Future Missions",
+          "content": "Explore the Habitable Worlds Observatory, ARIEL, and LIFE Space Mission."
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "title": "Theoretical Astrophysics",
+      "description": "Dive into relativity, gravitational waves, and more.",
+      "content": "Dive into relativity, gravitational waves, and astrochemistry. Simulate galaxy mergers and study magnetohydrodynamics in solar flares and accretion disks.",
+      "submodules": [
+        {
+          "title": "7.1 Relativity & Gravitational Waves",
+          "content": "Study LIGO/Virgo detections and multi-messenger astronomy. Activity: Simulate gravitational waves (Python lab)."
+        },
+        {
+          "title": "7.2 High-Energy Astrophysics",
+          "content": "Explore gamma-ray bursts and pulsar wind nebulae."
+        },
+        {
+          "title": "7.3 Astrochemistry",
+          "content": "Learn about prebiotic molecules in nebulae (e.g., glycine in comets)."
+        },
+        {
+          "title": "7.4 Computational Astrophysics",
+          "content": "Simulate galaxy mergers using Python/Julia labs."
+        },
+        {
+          "title": "7.5 Magnetohydrodynamics & Plasma Physics",
+          "content": "Study MHD basics and applications in solar flares and accretion disks."
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "title": "Space Technology & Exploration",
+      "description": "Learn about rockets, missions, and space policy.",
+      "content": "Learn about reusable rockets, mission design, and space law. Explore Artemis, Mars colonization, and ethical debates on space sustainability.",
+      "submodules": [
+        {
+          "title": "8A.1 Rockets & Propulsion",
+          "content": "Learn about reusable rockets (Starship) and nuclear thermal propulsion."
+        },
+        {
+          "title": "8A.2 Mission Design",
+          "content": "Explore Artemis, Mars Sample Return, and Lunar Gateway."
+        },
+        {
+          "title": "8A.3 Satellite Technology & Space Telescopes",
+          "content": "Study Hubble, JWST, and design considerations."
+        },
+        {
+          "title": "8A.4a Interstellar Travel",
+          "content": "Learn about light sails and Breakthrough Starshot."
+        },
+        {
+          "title": "8A.4b Space Sustainability",
+          "content": "Explore debris mitigation and the ClearSpace-1 mission."
+        },
+        {
+          "title": "8B.1 Space Missions",
+          "content": "Study historical (Apollo, Voyager), current (ISS, Artemis), and future (Mars colonization) missions, including international cooperation."
+        },
+        {
+          "title": "8B.2 Space Law & Ethics",
+          "content": "Learn about Artemis Accords, asteroid mining laws, and terraforming ethics."
+        },
+        {
+          "title": "8B.3 Ethical Debates",
+          "content": "Debate prioritizing space exploration during climate crises."
+        },
+        {
+          "title": "8B.4 Space Sustainability",
+          "content": "Study Kessler syndrome and debris mitigation strategies."
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "title": "Cutting-Edge Topics",
+      "description": "Explore neutrinos, AI, and multi-messenger astronomy.",
+      "content": "Explore neutrino astronomy, AI in galaxy classification, and multi-messenger astronomy. Conduct virtual labs on Martian soil and quantum sensors.",
+      "submodules": [
+        {
+          "title": "9.1 Neutrino Astronomy",
+          "content": "Learn about neutrino properties, IceCube detections, and supernova neutrinos."
+        },
+        {
+          "title": "9.2 AI in Astronomy",
+          "content": "Explore neural networks for galaxy classification and AI-driven research."
+        },
+        {
+          "title": "9.3 Astrobiology Labs",
+          "content": "Conduct virtual experiments on Martian soil and Europa ocean chemistry."
+        },
+        {
+          "title": "9.4 Quantum Technologies",
+          "content": "Learn about quantum sensors for dark matter detection."
+        },
+        {
+          "title": "9.5 Multi-Messenger Astronomy",
+          "content": "Study GW170817 and synergies across observational windows."
+        }
+      ]
+    }
+  ]
+}

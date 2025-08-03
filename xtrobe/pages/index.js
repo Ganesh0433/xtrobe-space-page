@@ -7,7 +7,7 @@ import Astronomy from "./astronomy";
 import SignUp from "./signup";
 import Main from "./home";
 import  NotionEditor from "./notes";
-import Dashboard from "./Dashboard";
+import Dashboard from "./dashboard";
 // import Xtrobot fro../components/xtrobotbot";
 
 import ISS from "./iss";
